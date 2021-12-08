@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
         let skip = (page - 1) * size;
         console.log(size);
 
-        let users = await userModel.find({}).limit(size).lean().exec();
+        let users = await userModel.find({}).skip(skip).limit(size).lean().exec();
 
         const totalPages = Math.ceil((await userModel.find().countDocuments()) / size)
 
